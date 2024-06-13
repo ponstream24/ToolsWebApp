@@ -1,0 +1,18 @@
+# PHP設定の値をMB単位で指定
+php_value max_file_uploads 1024
+php_value post_max_size 1024M
+php_value upload_max_filesize 1024M
+php_value realpath_cache_size 1024K
+
+# URLリライトの設定を開始
+RewriteEngine on
+
+# .htmlファイルが存在する場合、それにリライト
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# .phpファイルが存在する場合、それにリライト
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
