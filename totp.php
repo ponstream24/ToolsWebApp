@@ -194,14 +194,14 @@ class Totp
     }
 }
 
-// $totp = new Totp();
-// $totp->generateSeed();
-// $totp->setSeed16("8575dd4ab5ccb14f216ac7b8fc89099fd4178db7");
-// echo $totp->getSeedString();
-// echo "<br>";
-// echo bin2hex($totp->getSeedBytes());
-// echo "<br>";
-// echo $totp->getTOTPKeyNow();
-// echo "<br>";
-// echo $totp->checkKey("982342", 4);
-// echo "<br>";
+$totp = new Totp();
+$totp->generateSeed();
+$totp->setSeed16("8575dd4ab5ccb14f216ac7b8fc89099fd4178db7");
+echo $totp->getSeedString();
+echo "<br>";
+echo bin2hex($totp->getSeedBytes());
+echo "<br>";
+echo $totp->getTOTPKeyNow();
+echo "<br>";
+echo $totp->checkKey("982342", 4);
+echo "<br>";
