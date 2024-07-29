@@ -5,9 +5,9 @@
         "link": "qr.php"
     },
     {
-        "name": "ツール2",
-        "description": "ツール2の説明...",
-        "link": "tool2.php"
+        "name": "暗号化・復号化",
+        "description": "文字列を暗号化・復号化できます。また、ソルトも設定できるので完全な暗号化復号化が可能です。",
+        "link": "pass.php"
     },
     {
         "name": "ツール3",
