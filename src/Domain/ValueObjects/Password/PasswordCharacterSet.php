@@ -6,49 +6,78 @@ use Domain\Exceptions\InvalidPasswordCharacterSetException;
 
 class PasswordCharacterSet
 {
-    private string $characters = '';
-    private array $requiredCharacters = [];
-    
-    private const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    private const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
-    private const NUMBERS = '0123456789';
-    private const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    private bool $uppercase;
+    private bool $lowercase;
+    private bool $numbers;
+    private bool $symbols;
 
-    public function __construct(
-        bool $useUppercase,
-        bool $useLowercase,
-        bool $useNumbers,
-        bool $useSymbols
-    ) {
-        if (!$useUppercase && !$useLowercase && !$useNumbers && !$useSymbols) {
-            throw new InvalidPasswordCharacterSetException('少なくとも1つの文字セットを選択する必要があります。');
-        }
+    /**
+     * @param bool $uppercase 大文字を使用するか
+     * @param bool $lowercase 小文字を使用するか
+     * @param bool $numbers 数字を使用するか
+     * @param bool $symbols 記号を使用するか
+     * @throws InvalidPasswordCharacterSetException 文字セットが無効な場合
+     */
+    public function __construct(bool $uppercase, bool $lowercase, bool $numbers, bool $symbols)
+    {
+        $this->uppercase = $uppercase;
+        $this->lowercase = $lowercase;
+        $this->numbers = $numbers;
+        $this->symbols = $symbols;
 
-        if ($useUppercase) {
-            $this->characters .= self::UPPERCASE;
-            $this->requiredCharacters[] = self::UPPERCASE[random_int(0, strlen(self::UPPERCASE) - 1)];
-        }
-        if ($useLowercase) {
-            $this->characters .= self::LOWERCASE;
-            $this->requiredCharacters[] = self::LOWERCASE[random_int(0, strlen(self::LOWERCASE) - 1)];
-        }
-        if ($useNumbers) {
-            $this->characters .= self::NUMBERS;
-            $this->requiredCharacters[] = self::NUMBERS[random_int(0, strlen(self::NUMBERS) - 1)];
-        }
-        if ($useSymbols) {
-            $this->characters .= self::SYMBOLS;
-            $this->requiredCharacters[] = self::SYMBOLS[random_int(0, strlen(self::SYMBOLS) - 1)];
+        if (!$this->isValid()) {
+            throw new InvalidPasswordCharacterSetException('少なくとも1つの文字セットを選択してください。');
         }
     }
 
-    public function value(): string
+    /**
+     * 文字セットが有効かどうかを確認
+     * 少なくとも1つの文字セットが選択されている必要がある
+     *
+     * @return bool
+     */
+    private function isValid(): bool
     {
-        return $this->characters;
+        return $this->uppercase || $this->lowercase || $this->numbers || $this->symbols;
     }
 
-    public function getRequiredCharacters(): array
+    /**
+     * 大文字を使用するかどうか
+     *
+     * @return bool
+     */
+    public function useUppercase(): bool
     {
-        return $this->requiredCharacters;
+        return $this->uppercase;
+    }
+
+    /**
+     * 小文字を使用するかどうか
+     *
+     * @return bool
+     */
+    public function useLowercase(): bool
+    {
+        return $this->lowercase;
+    }
+
+    /**
+     * 数字を使用するかどうか
+     *
+     * @return bool
+     */
+    public function useNumbers(): bool
+    {
+        return $this->numbers;
+    }
+
+    /**
+     * 記号を使用するかどうか
+     *
+     * @return bool
+     */
+    public function useSymbols(): bool
+    {
+        return $this->symbols;
     }
 } 

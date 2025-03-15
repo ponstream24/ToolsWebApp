@@ -112,6 +112,17 @@ try {
     $router->addApiRoute('/api/tool/totp/qr', [$totpController, 'generateQr']);
     $router->addApiRoute('/api/tool/totp/verify', [$totpController, 'verify']);
 
+    // API Routes
+    $router->addApiRoute('/api/tool/totp', function () {
+        $controller = new \Presentation\Web\Api\TotpController();
+        $controller->generate();
+    });
+
+    $router->addApiRoute('/api/tool/password', function () {
+        $controller = new \Presentation\Web\Api\PasswordController();
+        $controller->generate();
+    });
+
     // リクエストの処理
     $router->dispatch();
 } catch (\Throwable $e) {
@@ -125,7 +136,7 @@ try {
         header('Content-Type: application/json');
         echo json_encode([
             'success' => false,
-            'error' => 'サーバーエラーが発生しました。後ほど再試行してください。'
+            'error' => 'サーバーエラーが発生しました。後ほど再試行してください。'.$e->getMessage()
         ]);
     }
     exit;
