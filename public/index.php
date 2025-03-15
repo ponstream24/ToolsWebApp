@@ -1,6 +1,7 @@
 <?php
-// エラー表示を本番環境では無効にし、ログに記録する
-ini_set('display_errors', 0);
+// エラー表示を有効化
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // グローバルエラーハンドラー
