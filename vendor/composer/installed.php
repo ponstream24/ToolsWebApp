@@ -3,7 +3,7 @@
         'name' => 'yukitetsuka/tools-web-app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '082a78ced06935f36fb637a0d5a058056d9fcbed',
+        'reference' => '3339d576f75c8e7efe0de0ef10c92f53d3c43269',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -487,7 +487,7 @@
         'yukitetsuka/tools-web-app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '082a78ced06935f36fb637a0d5a058056d9fcbed',
+            'reference' => '3339d576f75c8e7efe0de0ef10c92f53d3c43269',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
