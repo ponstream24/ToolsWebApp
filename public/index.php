@@ -1,6 +1,7 @@
 <?php
-// エラー表示を本番環境では無効にし、ログに記録する
-ini_set('display_errors', 0);
+// エラー表示を有効化
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // グローバルエラーハンドラー
@@ -78,7 +79,11 @@ $totpService = new TotpService($cache, $logger);
 $totpAppService = new TotpApplicationService($totpService);
 $qrCodeService = new QrCodeService();
 $encoderService = new EncoderService();
+<<<<<<< HEAD
 $encoderAppService = new EncoderApplicationService($encoderService);
+=======
+$encoderAppService = new EncoderApplicationService();
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
 
 // コントローラのインスタンス作成
 $totpController = new TotpController($totpAppService);
@@ -124,8 +129,30 @@ try {
     $router->addApiRoute('/api/tool/totp', [$totpController, 'generate']);
     $router->addApiRoute('/api/tool/totp/qr', [$totpController, 'generateQr']);
     $router->addApiRoute('/api/tool/totp/verify', [$totpController, 'verify']);
+<<<<<<< HEAD
     $router->addApiRoute('/api/tool/encoder/encode', [new \Presentation\Web\Api\EncoderController(), 'encode']);
     $router->addApiRoute('/api/tool/encoder/decode', [new \Presentation\Web\Api\EncoderController(), 'decode']);
+=======
+    $router->addApiRoute('/api/tool/encoder/encode', function () {
+        $controller = new \Presentation\Web\Api\EncoderController();
+        $controller->encode();
+    });
+    $router->addApiRoute('/api/tool/encoder/decode', function () {
+        $controller = new \Presentation\Web\Api\EncoderController();
+        $controller->decode();
+    });
+
+    // API Routes
+    $router->addApiRoute('/api/tool/totp', function () {
+        $controller = new \Presentation\Web\Api\TotpController();
+        $controller->generate();
+    });
+
+    $router->addApiRoute('/api/tool/password', function () {
+        $controller = new \Presentation\Web\Api\PasswordController();
+        $controller->generate();
+    });
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
 
     // リクエストの処理
     $router->dispatch();
@@ -140,7 +167,7 @@ try {
         header('Content-Type: application/json');
         echo json_encode([
             'success' => false,
-            'error' => 'サーバーエラーが発生しました。後ほど再試行してください。'
+            'error' => 'サーバーエラーが発生しました。後ほど再試行してください。'.$e->getMessage()
         ]);
     }
     exit;

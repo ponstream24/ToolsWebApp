@@ -33,7 +33,11 @@ class CodePointString extends AbstractUnicodeString
         $this->string = $string;
     }
 
+<<<<<<< HEAD
     public function append(string ...$suffix): AbstractString
+=======
+    public function append(string ...$suffix): static
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
     {
         $str = clone $this;
         $str->string .= 1 >= \count($suffix) ? ($suffix[0] ?? '') : implode('', $suffix);
@@ -80,6 +84,7 @@ class CodePointString extends AbstractUnicodeString
         return '' === $str->string ? [] : [mb_ord($str->string, 'UTF-8')];
     }
 
+<<<<<<< HEAD
     public function endsWith($suffix): bool
     {
         if ($suffix instanceof AbstractString) {
@@ -88,6 +93,14 @@ class CodePointString extends AbstractUnicodeString
             return parent::endsWith($suffix);
         } else {
             $suffix = (string) $suffix;
+=======
+    public function endsWith(string|iterable|AbstractString $suffix): bool
+    {
+        if ($suffix instanceof AbstractString) {
+            $suffix = $suffix->string;
+        } elseif (!\is_string($suffix)) {
+            return parent::endsWith($suffix);
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         }
 
         if ('' === $suffix || !preg_match('//u', $suffix)) {
@@ -101,6 +114,7 @@ class CodePointString extends AbstractUnicodeString
         return \strlen($this->string) >= \strlen($suffix) && 0 === substr_compare($this->string, $suffix, -\strlen($suffix));
     }
 
+<<<<<<< HEAD
     public function equalsTo($string): bool
     {
         if ($string instanceof AbstractString) {
@@ -109,6 +123,14 @@ class CodePointString extends AbstractUnicodeString
             return parent::equalsTo($string);
         } else {
             $string = (string) $string;
+=======
+    public function equalsTo(string|iterable|AbstractString $string): bool
+    {
+        if ($string instanceof AbstractString) {
+            $string = $string->string;
+        } elseif (!\is_string($string)) {
+            return parent::equalsTo($string);
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         }
 
         if ('' !== $string && $this->ignoreCase) {
@@ -118,6 +140,7 @@ class CodePointString extends AbstractUnicodeString
         return $string === $this->string;
     }
 
+<<<<<<< HEAD
     public function indexOf($needle, int $offset = 0): ?int
     {
         if ($needle instanceof AbstractString) {
@@ -126,6 +149,14 @@ class CodePointString extends AbstractUnicodeString
             return parent::indexOf($needle, $offset);
         } else {
             $needle = (string) $needle;
+=======
+    public function indexOf(string|iterable|AbstractString $needle, int $offset = 0): ?int
+    {
+        if ($needle instanceof AbstractString) {
+            $needle = $needle->string;
+        } elseif (!\is_string($needle)) {
+            return parent::indexOf($needle, $offset);
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         }
 
         if ('' === $needle) {
@@ -137,6 +168,7 @@ class CodePointString extends AbstractUnicodeString
         return false === $i ? null : $i;
     }
 
+<<<<<<< HEAD
     public function indexOfLast($needle, int $offset = 0): ?int
     {
         if ($needle instanceof AbstractString) {
@@ -145,6 +177,14 @@ class CodePointString extends AbstractUnicodeString
             return parent::indexOfLast($needle, $offset);
         } else {
             $needle = (string) $needle;
+=======
+    public function indexOfLast(string|iterable|AbstractString $needle, int $offset = 0): ?int
+    {
+        if ($needle instanceof AbstractString) {
+            $needle = $needle->string;
+        } elseif (!\is_string($needle)) {
+            return parent::indexOfLast($needle, $offset);
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         }
 
         if ('' === $needle) {
@@ -161,7 +201,11 @@ class CodePointString extends AbstractUnicodeString
         return mb_strlen($this->string, 'UTF-8');
     }
 
+<<<<<<< HEAD
     public function prepend(string ...$prefix): AbstractString
+=======
+    public function prepend(string ...$prefix): static
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
     {
         $str = clone $this;
         $str->string = (1 >= \count($prefix) ? ($prefix[0] ?? '') : implode('', $prefix)).$this->string;
@@ -173,7 +217,11 @@ class CodePointString extends AbstractUnicodeString
         return $str;
     }
 
+<<<<<<< HEAD
     public function replace(string $from, string $to): AbstractString
+=======
+    public function replace(string $from, string $to): static
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
     {
         $str = clone $this;
 
@@ -194,7 +242,11 @@ class CodePointString extends AbstractUnicodeString
         return $str;
     }
 
+<<<<<<< HEAD
     public function slice(int $start = 0, ?int $length = null): AbstractString
+=======
+    public function slice(int $start = 0, ?int $length = null): static
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
     {
         $str = clone $this;
         $str->string = mb_substr($this->string, $start, $length, 'UTF-8');
@@ -202,7 +254,11 @@ class CodePointString extends AbstractUnicodeString
         return $str;
     }
 
+<<<<<<< HEAD
     public function splice(string $replacement, int $start = 0, ?int $length = null): AbstractString
+=======
+    public function splice(string $replacement, int $start = 0, ?int $length = null): static
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
     {
         if (!preg_match('//u', $replacement)) {
             throw new InvalidArgumentException('Invalid UTF-8 string.');
@@ -218,7 +274,11 @@ class CodePointString extends AbstractUnicodeString
 
     public function split(string $delimiter, ?int $limit = null, ?int $flags = null): array
     {
+<<<<<<< HEAD
         if (1 > $limit = $limit ?? \PHP_INT_MAX) {
+=======
+        if (1 > $limit ??= \PHP_INT_MAX) {
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
             throw new InvalidArgumentException('Split limit must be a positive integer.');
         }
 
@@ -247,6 +307,7 @@ class CodePointString extends AbstractUnicodeString
         return $chunks;
     }
 
+<<<<<<< HEAD
     public function startsWith($prefix): bool
     {
         if ($prefix instanceof AbstractString) {
@@ -255,6 +316,14 @@ class CodePointString extends AbstractUnicodeString
             return parent::startsWith($prefix);
         } else {
             $prefix = (string) $prefix;
+=======
+    public function startsWith(string|iterable|AbstractString $prefix): bool
+    {
+        if ($prefix instanceof AbstractString) {
+            $prefix = $prefix->string;
+        } elseif (!\is_string($prefix)) {
+            return parent::startsWith($prefix);
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         }
 
         if ('' === $prefix || !preg_match('//u', $prefix)) {

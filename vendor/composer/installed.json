@@ -3318,6 +3318,7 @@
         },
         {
             "name": "symfony/string",
+<<<<<<< HEAD
             "version": "v5.4.47",
             "version_normalized": "5.4.47.0",
             "source": {
@@ -3333,6 +3334,23 @@
             },
             "require": {
                 "php": ">=7.2.5",
+=======
+            "version": "v6.4.15",
+            "version_normalized": "6.4.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/string.git",
+                "reference": "73a5e66ea2e1677c98d4449177c5a9cf9d8b4c6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/string/zipball/73a5e66ea2e1677c98d4449177c5a9cf9d8b4c6f",
+                "reference": "73a5e66ea2e1677c98d4449177c5a9cf9d8b4c6f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-intl-grapheme": "~1.0",
                 "symfony/polyfill-intl-normalizer": "~1.0",
@@ -3343,12 +3361,22 @@
                 "symfony/translation-contracts": ">=3.0"
             },
             "require-dev": {
+<<<<<<< HEAD
                 "symfony/error-handler": "^4.4|^5.0|^6.0",
                 "symfony/http-client": "^4.4|^5.0|^6.0",
                 "symfony/translation-contracts": "^1.1|^2",
                 "symfony/var-exporter": "^4.4|^5.0|^6.0"
             },
             "time": "2024-11-10T20:33:58+00:00",
+=======
+                "symfony/error-handler": "^5.4|^6.0|^7.0",
+                "symfony/http-client": "^5.4|^6.0|^7.0",
+                "symfony/intl": "^6.2|^7.0",
+                "symfony/translation-contracts": "^2.5|^3.0",
+                "symfony/var-exporter": "^5.4|^6.0|^7.0"
+            },
+            "time": "2024-11-13T13:31:12+00:00",
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3387,7 +3415,11 @@
                 "utf8"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/string/tree/v5.4.47"
+=======
+                "source": "https://github.com/symfony/string/tree/v6.4.15"
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
             },
             "funding": [
                 {

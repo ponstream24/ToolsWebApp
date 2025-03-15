@@ -34,7 +34,7 @@ include __DIR__ . '/../layouts/header.php';
             </h1>
             <p class="hero-subtitle animate-on-scroll" data-animation="animate__fadeInUp">
                 日常のタスクを簡単に解決するための様々なツールを提供しています。
-                QRコード生成、TOTP認証など、必要なツールをすぐに使えます。
+                QRコード生成、TOTP認証、テキストエンコード/デコードなど、必要なツールをすぐに使えます。
             </p>
             <div class="hero-buttons animate-on-scroll" data-animation="animate__fadeInUp">
                 <a href="#tools" class="button hero-button is-primary">

@@ -37,6 +37,12 @@ final class EnglishInflector implements InflectorInterface
         // curricula (curriculum)
         ['alucirruc', 9, true, true, 'curriculum'],
 
+<<<<<<< HEAD
+=======
+        // quora (quorum)
+        ['arouq', 5, true, true, 'quorum'],
+
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         // genera (genus)
         ['areneg', 6, true, true, 'genus'],
 
@@ -268,6 +274,12 @@ final class EnglishInflector implements InflectorInterface
         // albums (album)
         ['mubla', 5, true, true, 'albums'],
 
+<<<<<<< HEAD
+=======
+        // quorums (quorum)
+        ['murouq', 6, true, true, ['quora', 'quorums']],
+
+>>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
         // bacteria (bacterium), curricula (curriculum), media (medium), memoranda (memorandum), phenomena (phenomenon), strata (stratum)
         ['mu', 2, true, true, 'a'],
 
