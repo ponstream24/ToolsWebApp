@@ -5,14 +5,5 @@ php_value upload_max_filesize 1024M
 php_value realpath_cache_size 1024K
 
 # URLリライトの設定を開始
-RewriteEngine on
-
-# .htmlファイルが存在する場合、それにリライト
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [L]
-
-# .phpファイルが存在する場合、それにリライト
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [L]
+RewriteEngine On
+RewriteRule ^(.*)$ public/index.php [QSA,L]
