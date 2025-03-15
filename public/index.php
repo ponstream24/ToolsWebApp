@@ -52,9 +52,12 @@ use Infrastructure\Cache\RedisCache;
 use Infrastructure\Logging\Logger;
 use Domain\Services\TotpService;
 use Domain\Services\QrCodeService;
+use Domain\Services\EncoderService;
 use Application\Services\TotpApplicationService;
+use Application\Services\EncoderApplicationService;
 use Presentation\Web\Controllers\TotpController;
 use Presentation\Web\Controllers\QrCodeController;
+use Presentation\Web\Controllers\EncoderController;
 use Presentation\Web\Router;
 use Domain\Models\Tool;
 
@@ -74,10 +77,13 @@ $logger = new Logger();
 $totpService = new TotpService($cache, $logger);
 $totpAppService = new TotpApplicationService($totpService);
 $qrCodeService = new QrCodeService();
+$encoderService = new EncoderService();
+$encoderAppService = new EncoderApplicationService();
 
 // コントローラのインスタンス作成
 $totpController = new TotpController($totpAppService);
 $qrCodeController = new QrCodeController($qrCodeService);
+$encoderController = new EncoderController($encoderAppService);
 
 // ツールの定義
 $tools = [
@@ -92,6 +98,12 @@ $tools = [
         '2段階認証用のTOTPを生成します。',
         $basePath . '/tool/totp',
         'security'
+    ),
+    new Tool(
+        'テキストエンコーダー/デコーダー',
+        'テキストを様々な形式でエンコード・デコードします。',
+        $basePath . '/tool/encoder',
+        'converter'
     )
 ];
 
@@ -105,12 +117,21 @@ try {
     });
     $router->addRoute('/tool/qr', [$qrCodeController, 'index']);
     $router->addRoute('/tool/totp', [$totpController, 'index']);
+    $router->addRoute('/tool/encoder', [$encoderController, 'index']);
 
     // APIルート
     $router->addApiRoute('/api/tool/qr', [$qrCodeController, 'generate']);
     $router->addApiRoute('/api/tool/totp', [$totpController, 'generate']);
     $router->addApiRoute('/api/tool/totp/qr', [$totpController, 'generateQr']);
     $router->addApiRoute('/api/tool/totp/verify', [$totpController, 'verify']);
+    $router->addApiRoute('/api/tool/encoder/encode', function () {
+        $controller = new \Presentation\Web\Api\EncoderController();
+        $controller->encode();
+    });
+    $router->addApiRoute('/api/tool/encoder/decode', function () {
+        $controller = new \Presentation\Web\Api\EncoderController();
+        $controller->decode();
+    });
 
     // リクエストの処理
     $router->dispatch();
