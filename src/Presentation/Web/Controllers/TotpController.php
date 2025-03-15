@@ -122,30 +122,24 @@ class TotpController
         }
     }
 
-    public function verify(): void
+    public function verify(Request $request): JsonResponse
     {
-        if (!headers_sent()) {
-            header('Content-Type: application/json');
-        }
-
         try {
-            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            if ($request->getMethod() !== 'POST') {
                 $this->logger->warning('Invalid request method for TOTP verification');
-                echo json_encode([
+                return new JsonResponse([
                     'success' => false,
                     'error' => 'Invalid request method'
-                ]);
-                return;
+                ], 405);
             }
 
-            $secret = $_POST['secret'] ?? '';
+            $secret = $request->get('secret');
             if (empty($secret)) {
                 $this->logger->warning('Empty secret provided for TOTP verification');
-                echo json_encode([
+                return new JsonResponse([
                     'success' => false,
                     'error' => 'Secret is required'
-                ]);
-                return;
+                ], 400);
             }
 
             $this->logger->info('TOTP verification request received', ['secret' => $secret]);
@@ -153,7 +147,7 @@ class TotpController
             try {
                 $code = $this->totpService->generateCode($secret);
                 $this->logger->info('TOTP code generated successfully', ['code' => $code]);
-                echo json_encode([
+                return new JsonResponse([
                     'success' => true,
                     'code' => $code
                 ]);
@@ -161,29 +155,29 @@ class TotpController
                 $this->logger->warning('Invalid TOTP secret', [
                     'error' => $e->getMessage()
                 ]);
-                echo json_encode([
+                return new JsonResponse([
                     'success' => false,
                     'error' => $e->getMessage()
-                ]);
+                ], 400);
             } catch (\Exception $e) {
                 $this->logger->error('Error generating TOTP code', [
                     'error' => $e->getMessage(),
                     'trace' => $e->getTraceAsString()
                 ]);
-                echo json_encode([
+                return new JsonResponse([
                     'success' => false,
                     'error' => 'Failed to generate TOTP code'
-                ]);
+                ], 500);
             }
         } catch (\Exception $e) {
             $this->logger->error('Unexpected error in TOTP verification', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-            echo json_encode([
+            return new JsonResponse([
                 'success' => false,
                 'error' => 'サーバーエラーが発生しました。'
-            ]);
+            ], 500);
         }
     }
 }
