@@ -1,0 +1,14 @@
+# リクエストをindex.phpにリダイレクト
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /ToolsWebApp/public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# PHP 8.3を使用する設定
+<FilesMatch "\.php$">
+    # PHP-FPMを使用
+    AddHandler x-httpd-php83 .php
+</FilesMatch> 
