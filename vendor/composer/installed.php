@@ -3,11 +3,7 @@
         'name' => 'yukitetsuka/tools-web-app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-<<<<<<< HEAD
-        'reference' => '513e650618800032beda95192e77250e9217171e',
-=======
-        'reference' => '16e8aa6cd0efbe32916484cff4e7885531786698',
->>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
+        'reference' => '1b1db4074141bbe0184dda8cfb8ccff16f842d92',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -471,15 +467,9 @@
             'dev_requirement' => false,
         ),
         'symfony/string' => array(
-<<<<<<< HEAD
             'pretty_version' => 'v5.4.47',
             'version' => '5.4.47.0',
             'reference' => '136ca7d72f72b599f2631aca474a4f8e26719799',
-=======
-            'pretty_version' => 'v6.4.15',
-            'version' => '6.4.15.0',
-            'reference' => '73a5e66ea2e1677c98d4449177c5a9cf9d8b4c6f',
->>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/string',
             'aliases' => array(),
@@ -497,11 +487,7 @@
         'yukitetsuka/tools-web-app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-<<<<<<< HEAD
-            'reference' => '513e650618800032beda95192e77250e9217171e',
-=======
-            'reference' => '16e8aa6cd0efbe32916484cff4e7885531786698',
->>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
+            'reference' => '1b1db4074141bbe0184dda8cfb8ccff16f842d92',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
