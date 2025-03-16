@@ -79,11 +79,7 @@ $totpService = new TotpService($cache, $logger);
 $totpAppService = new TotpApplicationService($totpService);
 $qrCodeService = new QrCodeService();
 $encoderService = new EncoderService();
-<<<<<<< HEAD
-$encoderAppService = new EncoderApplicationService($encoderService);
-=======
 $encoderAppService = new EncoderApplicationService();
->>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
 
 // コントローラのインスタンス作成
 $totpController = new TotpController($totpAppService);
@@ -129,10 +125,6 @@ try {
     $router->addApiRoute('/api/tool/totp', [$totpController, 'generate']);
     $router->addApiRoute('/api/tool/totp/qr', [$totpController, 'generateQr']);
     $router->addApiRoute('/api/tool/totp/verify', [$totpController, 'verify']);
-<<<<<<< HEAD
-    $router->addApiRoute('/api/tool/encoder/encode', [new \Presentation\Web\Api\EncoderController(), 'encode']);
-    $router->addApiRoute('/api/tool/encoder/decode', [new \Presentation\Web\Api\EncoderController(), 'decode']);
-=======
     $router->addApiRoute('/api/tool/encoder/encode', function () {
         $controller = new \Presentation\Web\Api\EncoderController();
         $controller->encode();
@@ -152,7 +144,6 @@ try {
         $controller = new \Presentation\Web\Api\PasswordController();
         $controller->generate();
     });
->>>>>>> 682f476e052bf0e537f9b7d2b42ef35fd30ef410
 
     // リクエストの処理
     $router->dispatch();
