@@ -99,11 +99,11 @@ class QrCodeController
     {
         switch ($type) {
             case 'text':
-                return $data['text-data'] ?? '';
+                return $data['text'] ?? $data['text-data'] ?? '';
             case 'url':
-                return $data['url-data'] ?? '';
+                return $data['url'] ?? $data['url-data'] ?? '';
             case 'tel':
-                $tel = $data['tel-data'] ?? '';
+                $tel = $data['tel'] ?? $data['tel-data'] ?? '';
                 return $tel ? "tel:$tel" : '';
             case 'wifi':
                 $ssid = $data['ssid'] ?? '';
