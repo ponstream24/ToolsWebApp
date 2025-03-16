@@ -7,19 +7,19 @@ use Domain\ValueObjects\Totp\{
     TotpIssuer,
     TotpAccount
 };
-use Infrastructure\Cache\RedisCache;
+use Infrastructure\Cache\DummyCache;
 use Infrastructure\Logging\Logger;
 use Monolog\Logger as MonologLogger;
 
 class TotpService
 {
-    /** @var RedisCache */
+    /** @var DummyCache */
     private $cache;
     /** @var MonologLogger */
     private $logger;
     private const TOTP_CACHE_PREFIX = 'totp_secret_';
 
-    public function __construct(RedisCache $cache, MonologLogger $logger)
+    public function __construct(DummyCache $cache, MonologLogger $logger)
     {
         $this->cache = $cache;
         $this->logger = $logger;
@@ -58,35 +58,16 @@ class TotpService
                 ];
             }
 
-            // キャッシュから確認
-            $cacheKey = self::TOTP_CACHE_PREFIX . md5($secret);
-            
-            if ($this->cache->exists($cacheKey)) {
-                $uri = $this->cache->getValue($cacheKey);
-                $this->logger->info('キャッシュからTOTP URIを取得しました', [
-                    'secret' => $secret,
-                    'uri' => $uri
-                ]);
-            } else {
-                // TOTPのURIを生成
-                $escapedIssuer = rawurlencode($issuer);
-                $escapedAccount = rawurlencode($account);
-                $uri = sprintf(
-                    'otpauth://totp/%s:%s?secret=%s&issuer=%s&algorithm=SHA1&digits=6&period=30',
-                    $escapedIssuer,
-                    $escapedAccount,
-                    $secret,
-                    $escapedIssuer
-                );
-
-                // URIをキャッシュに保存（1時間）
-                if ($this->cache->isAvailable()) {
-                    $this->cache->setValue($cacheKey, $uri, 3600);
-                    $this->logger->info('TOTP URIをキャッシュに保存しました', [
-                        'key' => $cacheKey
-                    ]);
-                }
-            }
+            // TOTPのURIを生成
+            $escapedIssuer = rawurlencode($issuer);
+            $escapedAccount = rawurlencode($account);
+            $uri = sprintf(
+                'otpauth://totp/%s:%s?secret=%s&issuer=%s&algorithm=SHA1&digits=6&period=30',
+                $escapedIssuer,
+                $escapedAccount,
+                $secret,
+                $escapedIssuer
+            );
 
             return [
                 'success' => true,
