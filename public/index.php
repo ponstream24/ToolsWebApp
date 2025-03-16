@@ -134,12 +134,7 @@ try {
         $controller->decode();
     });
 
-    // API Routes
-    $router->addApiRoute('/api/tool/totp', function () {
-        $controller = new \Presentation\Web\Api\TotpController();
-        $controller->generate();
-    });
-
+    // 重複したAPIルートを削除
     $router->addApiRoute('/api/tool/password', function () {
         $controller = new \Presentation\Web\Api\PasswordController();
         $controller->generate();
