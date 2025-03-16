@@ -49,7 +49,7 @@ set_exception_handler(function (\Throwable $e) {
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Infrastructure\Config\Config;
-use Infrastructure\Cache\RedisCache;
+use Infrastructure\Cache\DummyCache;
 use Infrastructure\Logging\Logger;
 use Domain\Services\TotpService;
 use Domain\Services\QrCodeService;
@@ -68,8 +68,8 @@ Config::load('app');
 // ベースパスの設定
 $basePath = '/ToolsWebApp/public';
 
-// Redisキャッシュのインスタンス作成
-$cache = RedisCache::getInstance();
+// ダミーキャッシュのインスタンス作成
+$cache = DummyCache::getInstance();
 
 // ロガーのインスタンス作成
 $logger = new Logger();
