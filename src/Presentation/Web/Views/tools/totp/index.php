@@ -81,7 +81,7 @@ async function fetchTotpCode() {
             throw new Error(data.error);
         }
 
-        document.getElementById("totp-code").textContent = data.code;
+        document.getElementById("totp-code").textContent = data.data.code;
     } catch (error) {
         document.getElementById("totp-code").textContent = "エラー";
         console.error("エラーが発生しました: " + error.message);

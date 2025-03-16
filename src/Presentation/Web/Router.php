@@ -100,7 +100,7 @@ class Router
             ]);
 
             if (strpos($requestUri, '/api/') !== false) {
-                $this->sendJsonResponse(false, 'サーバーエラーが発生しました。');
+                $this->sendJsonResponse(false, 'サーバーエラーが発生しました。'.$requestUri);
             } else {
                 header('Content-Type: text/html; charset=UTF-8');
                 echo 'エラーが発生しました: ' . $e->getMessage();
